@@ -1,0 +1,67 @@
+// Web Engineering II
+// Prof. Dr. Sebastian von Klinski
+// Sommersemester 2021
+// Semesterprojekt "MENSA - Community-Website für Studierende"
+// Simon Nunez Aschenbrenner (Matrikelnr. 908606)
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGRjN2E0ZmIxNzNhODBhMDcyOTcyNTciLCJpYXQiOjE2MjU3Mzg5MzEsImV4cCI6MTYyNTc1NjkzMX0.liUNU9ZBH5OsE235gUCrO7qrqEKWRPWiqKSgvqW5CtE
+@groupId = 60dc7a4fb173a80a07297258
+@userId = 60dc7c2db173a80a0729725b
+@threadId = 60dc89b8b9d6cc0c1b98a4a2
+
+
+### POST add new thread
+POST https://localhost/threads/add HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name": "Der zweite Thread",
+    "groupId": "{{groupId}}"
+}
+
+### GET all threads
+GET https://localhost/threads/all HTTP/1.1
+Authorization: Bearer {{token}}
+
+### GET all threads a user is admin of
+GET https://localhost/threads/all?uid={{userId}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### GET all threads of one group
+GET https://localhost/threads/all?gid={{groupId}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### GET all threads that belong to the group and the user is admin of
+GET https://localhost/threads/all?uid={{userId}}&gid={{groupId}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### GET one thread by ID
+GET https://localhost/threads/{{threadId}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### GET threads of a group by name
+GET https://localhost/threads/find?gid={{groupId}}&name=Der+erste+Thread HTTP/1.1
+Authorization: Bearer {{token}}
+
+### PUT update thread name
+PUT https://localhost/threads/{{threadId}}/edit/name HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name": "Ein neuer Name"
+}
+
+### PUT update thread admin
+PUT https://localhost/threads/{{threadId}}/edit/admin HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "adminId": "{{userId}}"
+}
+
+### DELETE thread
+DELETE https://localhost/threads/{{threadId}} HTTP/1.1
+Authorization: Bearer {{token}}

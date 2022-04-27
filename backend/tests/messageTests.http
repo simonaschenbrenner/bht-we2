@@ -1,0 +1,93 @@
+// Web Engineering II
+// Prof. Dr. Sebastian von Klinski
+// Sommersemester 2021
+// Semesterprojekt "MENSA - Community-Website für Studierende"
+// Simon Nunez Aschenbrenner (Matrikelnr. 908606)
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGRjN2E0ZmIxNzNhODBhMDcyOTcyNTciLCJpYXQiOjE2MjU3Mzg5MzEsImV4cCI6MTYyNTc1NjkzMX0.liUNU9ZBH5OsE235gUCrO7qrqEKWRPWiqKSgvqW5CtE
+@groupId = 60dc7a4fb173a80a07297258
+@threadId = 60dc8fd739d8560deef1a210
+@userId = 60dc7a4fb173a80a07297257
+@messageId = 60dc90d334d74e0e2c78db69
+
+
+### POST add new message with content
+POST https://localhost/messages/add HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "groupId": "{{groupId}}",
+    "threadId": "{{threadId}}",
+    "content": "Eine erste Nachricht"
+}
+
+### POST add new message with atachment
+POST https://localhost/messages/add HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "groupId": "{{groupId}}",
+    "threadId": "{{threadId}}",
+    "attachment": {
+        "mime": "image/png",
+        "data": "iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAT+SURBVHhe7d3ZihxVAMfh0cR9i/vuO2huRITC7pmqxgRBMLeieYK8Qa69zGVMnKpJjJgooiIuiAY3VOKGuC9voD6BMZ7u6Q5Je8aZqV7r9PfBH5K5mAnn/NL0XMzUEgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAhrIy29WqOo/3/wrN1Yu5LM60qvxsezXf3/8wNM8g5nZVnOtO1DTWcMyiprE2inkwUdMYm8U8mKiZe1uNeTBRM7e6MYdIvxiOdrOJmrlTN+bBRM3cGDXmwUTNzI0r5sF6UVf5k/1PD9Mz7pi7C99Q/tFe69zf/xIwHWImGWImGWImGWImGWImGWImGWImGWImGWImGWImGWImGWImGQ+f2HNjCFDMNJ+YSYaYSYaYSYaYSYaYSYaYScZEYq6KP8XM1ImZZIiZZIiZZIiZZIiZZIiZZIiZZIiZZIiZZIiZZKzHnH8Zi7LuxMxMiJlkiJlkiJlkiJlkiJlkiJlkiJlkiJlkiLlBstPZzv4fiRBzgywfXr6hVeWftsriqf6HuICYG2Tl2Mo14XA/7h1ymf8t6ouJuUH2Ht57dbss3r/osEV9npgbZN+pfZeHw30reuiiFnOT9GIu81djhz7YIkct5gYJMe8IsZ6MHfrwFjFqMTfIwYMHLw2BrsUOfaMtUtRibpJzS5eEw302duibbRGizo/kN4m5QVpVfih26FtdN+pHqvzp/qdLipgbJlzWM7FD3+5SjFrMDRMiPBA79LpLKWoxN9Dy2vJ94ZB/jx1+3aUQtZgbLF/N722X+W+xS6i7Jkc9qZhbq8UD/S/BpGXHO/e0y+LX2GXUXROjFnNCulGHw/8ldil116SoxZygVrXn7hDhz7HLqbsmRC3mhC0fXb4rXO5PsUuqu3mOWswLoDhe3Bku5cfYZdVdq8rPzlvUYl4gWfnoHa2y+CF2aXU3T1GLeQG1jrRuD5f+fezy6m4eohbzAls5tnJbu8y/i11i3c0yajGz1Hmuc2uI8NvYZdbdLKIWM+d1ow4X+M3whY6yaUYtZv4jO7H3lnCJX8cut+6mEbWY2VB7rX1zq8y/il1y3U0yajGzqclEMv6ou//O8f/nE3OS1n/GbtxPc8rPtlfz/f0vMRIxs21Zme1qlcWZ2OXX3TiiFjO1dX/3XbssPo9FUHejRC1mRtaP+rNYDHVXJ2oxMzaD31Iai6LuthO1mBm73it1VXwyHMYo20rUYmZiOsc714cYer+Cd1z7v6jFzMQ9dPSx60JkH8ViqbtY1GJmarJT2bXtKv8wFk3dXRi1mJm67hMA2mXxQSye2iuLf0LIB8TMTHSfBBBeWU/HIpqXiZlt6T3eoireGw5pHiZmaum9Upf5u7GoZjUxM5L+g4jeicU17YmZsXjw5BNXhVfqt2ORTWtiZqyyMrsyRBV9ytakJ2YmonOoc0V4+/FmLLpJTcxM1PrzEPM3YvGNe2JmKrpRh+BeHw5wrCvzv8TM1PSiLvPXojGOOjEzC723H5s8wXbbEzOz1H+lfiUa53YnZubB+jeKxcvRSLc6MTNPdh/efVm7LF6KxrrZxMw8yk5nO9tVfioa7UYTM/MsvP3Y0SqLF6PxDk/MNEE36hDrC9GIBxMzTdJ7pa6K58VMMnqv1FV+TMwko/+euhIzyVh/+5EfEjMAAAAAAAAAAAAAAAAAAAAAADTG0tK/BchCtg7ZgiYAAAAASUVORK5CYII="
+        }
+}
+
+### POST add new message with content and atachment
+POST https://localhost/messages/add HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "groupId": "{{groupId}}",
+    "threadId": "{{threadId}}",
+    "content": "Eine dritte Nachricht",
+    "attachment": {
+        "mime": "image/png",
+        "data": "iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAT+SURBVHhe7d3ZihxVAMfh0cR9i/vuO2huRITC7pmqxgRBMLeieYK8Qa69zGVMnKpJjJgooiIuiAY3VOKGuC9voD6BMZ7u6Q5Je8aZqV7r9PfBH5K5mAnn/NL0XMzUEgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAhrIy29WqOo/3/wrN1Yu5LM60qvxsezXf3/8wNM8g5nZVnOtO1DTWcMyiprE2inkwUdMYm8U8mKiZe1uNeTBRM7e6MYdIvxiOdrOJmrlTN+bBRM3cGDXmwUTNzI0r5sF6UVf5k/1PD9Mz7pi7C99Q/tFe69zf/xIwHWImGWImGWImGWImGWImGWImGWImGWImGWImGWImGWImGWImGQ+f2HNjCFDMNJ+YSYaYSYaYSYaYSYaYSYaYScZEYq6KP8XM1ImZZIiZZIiZZIiZZIiZZIiZZIiZZIiZZIiZZIiZZKzHnH8Zi7LuxMxMiJlkiJlkiJlkiJlkiJlkiJlkiJlkiJlkiLlBstPZzv4fiRBzgywfXr6hVeWftsriqf6HuICYG2Tl2Mo14XA/7h1ymf8t6ouJuUH2Ht57dbss3r/osEV9npgbZN+pfZeHw30reuiiFnOT9GIu81djhz7YIkct5gYJMe8IsZ6MHfrwFjFqMTfIwYMHLw2BrsUOfaMtUtRibpJzS5eEw302duibbRGizo/kN4m5QVpVfih26FtdN+pHqvzp/qdLipgbJlzWM7FD3+5SjFrMDRMiPBA79LpLKWoxN9Dy2vJ94ZB/jx1+3aUQtZgbLF/N722X+W+xS6i7Jkc9qZhbq8UD/S/BpGXHO/e0y+LX2GXUXROjFnNCulGHw/8ldil116SoxZygVrXn7hDhz7HLqbsmRC3mhC0fXb4rXO5PsUuqu3mOWswLoDhe3Bku5cfYZdVdq8rPzlvUYl4gWfnoHa2y+CF2aXU3T1GLeQG1jrRuD5f+fezy6m4eohbzAls5tnJbu8y/i11i3c0yajGz1Hmuc2uI8NvYZdbdLKIWM+d1ow4X+M3whY6yaUYtZv4jO7H3lnCJX8cut+6mEbWY2VB7rX1zq8y/il1y3U0yajGzqclEMv6ou//O8f/nE3OS1n/GbtxPc8rPtlfz/f0vMRIxs21Zme1qlcWZ2OXX3TiiFjO1dX/3XbssPo9FUHejRC1mRtaP+rNYDHVXJ2oxMzaD31Iai6LuthO1mBm73it1VXwyHMYo20rUYmZiOsc714cYer+Cd1z7v6jFzMQ9dPSx60JkH8ViqbtY1GJmarJT2bXtKv8wFk3dXRi1mJm67hMA2mXxQSye2iuLf0LIB8TMTHSfBBBeWU/HIpqXiZlt6T3eoireGw5pHiZmaum9Upf5u7GoZjUxM5L+g4jeicU17YmZsXjw5BNXhVfqt2ORTWtiZqyyMrsyRBV9ytakJ2YmonOoc0V4+/FmLLpJTcxM1PrzEPM3YvGNe2JmKrpRh+BeHw5wrCvzv8TM1PSiLvPXojGOOjEzC723H5s8wXbbEzOz1H+lfiUa53YnZubB+jeKxcvRSLc6MTNPdh/efVm7LF6KxrrZxMw8yk5nO9tVfioa7UYTM/MsvP3Y0SqLF6PxDk/MNEE36hDrC9GIBxMzTdJ7pa6K58VMMnqv1FV+TMwko/+euhIzyVh/+5EfEjMAAAAAAAAAAAAAAAAAAAAAADTG0tK/BchCtg7ZgiYAAAAASUVORK5CYII="
+        }
+}
+
+### GET all messages
+GET https://localhost/messages/all HTTP/1.1
+Authorization: Bearer {{token}}
+
+### GET all messages a user has authored
+GET https://localhost/messages/all?uid={{userId}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### GET all messages of one thread
+GET https://localhost/messages/all?gid={{groupId}}&tid={{threadId}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### GET all messages that belong to one thread and the user has authored
+GET https://localhost/messages/all?uid={{userId}}&gid={{groupId}}&tid={{threadId}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### GET one message by ID
+GET https://localhost/messages/{{messageId}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### PUT update message (content and attachment)
+PUT https://localhost/messages/{{messageId}} HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "content": "Neuer Text",
+    "attachment": {
+        "mime": "image/png",
+        "data": "iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAT+SURBVHhe7d3ZihxVAMfh0cR9i/vuO2huRITC7pmqxgRBMLeieYK8Qa69zGVMnKpJjJgooiIuiAY3VOKGuC9voD6BMZ7u6Q5Je8aZqV7r9PfBH5K5mAnn/NL0XMzUEgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAhrIy29WqOo/3/wrN1Yu5LM60qvxsezXf3/8wNM8g5nZVnOtO1DTWcMyiprE2inkwUdMYm8U8mKiZe1uNeTBRM7e6MYdIvxiOdrOJmrlTN+bBRM3cGDXmwUTNzI0r5sF6UVf5k/1PD9Mz7pi7C99Q/tFe69zf/xIwHWImGWImGWImGWImGWImGWImGWImGWImGWImGWImGWImGWImGQ+f2HNjCFDMNJ+YSYaYSYaYSYaYSYaYSYaYScZEYq6KP8XM1ImZZIiZZIiZZIiZZIiZZIiZZIiZZIiZZIiZZIiZZKzHnH8Zi7LuxMxMiJlkiJlkiJlkiJlkiJlkiJlkiJlkiJlkiLlBstPZzv4fiRBzgywfXr6hVeWftsriqf6HuICYG2Tl2Mo14XA/7h1ymf8t6ouJuUH2Ht57dbss3r/osEV9npgbZN+pfZeHw30reuiiFnOT9GIu81djhz7YIkct5gYJMe8IsZ6MHfrwFjFqMTfIwYMHLw2BrsUOfaMtUtRibpJzS5eEw302duibbRGizo/kN4m5QVpVfih26FtdN+pHqvzp/qdLipgbJlzWM7FD3+5SjFrMDRMiPBA79LpLKWoxN9Dy2vJ94ZB/jx1+3aUQtZgbLF/N722X+W+xS6i7Jkc9qZhbq8UD/S/BpGXHO/e0y+LX2GXUXROjFnNCulGHw/8ldil116SoxZygVrXn7hDhz7HLqbsmRC3mhC0fXb4rXO5PsUuqu3mOWswLoDhe3Bku5cfYZdVdq8rPzlvUYl4gWfnoHa2y+CF2aXU3T1GLeQG1jrRuD5f+fezy6m4eohbzAls5tnJbu8y/i11i3c0yajGz1Hmuc2uI8NvYZdbdLKIWM+d1ow4X+M3whY6yaUYtZv4jO7H3lnCJX8cut+6mEbWY2VB7rX1zq8y/il1y3U0yajGzqclEMv6ou//O8f/nE3OS1n/GbtxPc8rPtlfz/f0vMRIxs21Zme1qlcWZ2OXX3TiiFjO1dX/3XbssPo9FUHejRC1mRtaP+rNYDHVXJ2oxMzaD31Iai6LuthO1mBm73it1VXwyHMYo20rUYmZiOsc714cYer+Cd1z7v6jFzMQ9dPSx60JkH8ViqbtY1GJmarJT2bXtKv8wFk3dXRi1mJm67hMA2mXxQSye2iuLf0LIB8TMTHSfBBBeWU/HIpqXiZlt6T3eoireGw5pHiZmaum9Upf5u7GoZjUxM5L+g4jeicU17YmZsXjw5BNXhVfqt2ORTWtiZqyyMrsyRBV9ytakJ2YmonOoc0V4+/FmLLpJTcxM1PrzEPM3YvGNe2JmKrpRh+BeHw5wrCvzv8TM1PSiLvPXojGOOjEzC723H5s8wXbbEzOz1H+lfiUa53YnZubB+jeKxcvRSLc6MTNPdh/efVm7LF6KxrrZxMw8yk5nO9tVfioa7UYTM/MsvP3Y0SqLF6PxDk/MNEE36hDrC9GIBxMzTdJ7pa6K58VMMnqv1FV+TMwko/+euhIzyVh/+5EfEjMAAAAAAAAAAAAAAAAAAAAAADTG0tK/BchCtg7ZgiYAAAAASUVORK5CYII="
+        }
+}
+
+### PUT update message (empty)
+PUT https://localhost/messages/{{messageId}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### DELETE message
+DELETE https://localhost/messages/{{messageId}} HTTP/1.1
+Authorization: Bearer {{token}}

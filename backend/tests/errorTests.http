@@ -1,0 +1,8 @@
+// Web Engineering II
+// Prof. Dr. Sebastian von Klinski
+// Sommersemester 2021
+// Semesterprojekt "MENSA - Community-Website für Studierende"
+// Simon Nunez Aschenbrenner (Matrikelnr. 908606)
+
+### 404 Error
+GET https://localhost/notAnEndpoint HTTP/1.1

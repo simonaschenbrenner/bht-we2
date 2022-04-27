@@ -1,0 +1,51 @@
+// Web Engineering II
+// Prof. Dr. Sebastian von Klinski
+// Sommersemester 2021
+// Semesterprojekt "MENSA - Community-Website für Studierende"
+// Simon Nunez Aschenbrenner (Matrikelnr. 908606)
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGRjN2E0ZmIxNzNhODBhMDcyOTcyNTciLCJpYXQiOjE2MjU4MjIxMTEsImV4cCI6MTYyNTg0MDExMX0.rU7TNnI9n88MuI9hivJkiOWHbq4tpe0A3FsCq9eAc_8
+@groupId = 60dc7a4fb173a80a07297258
+@userId = 60dc7c2db173a80a0729725b
+
+
+### POST add new membership
+POST https://localhost/memberships/add HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "userId": "{{userId}}",
+    "groupId": "{{groupId}}"
+}
+
+### GET all memberships
+GET https://localhost/memberships HTTP/1.1
+Authorization: Bearer {{token}}
+
+### GET all memberships of one user
+GET https://localhost/memberships?uid={{userId}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### GET all memberships of one group
+GET https://localhost/memberships?gid={{groupId}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### GET one membership
+GET https://localhost/memberships?uid={{userId}}&gid={{groupId}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### PUT update membership color
+PUT https://localhost/memberships/edit HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "userId": "{{userId}}",
+    "groupId": "{{groupId}}",
+    "color": [10, 20, 30]
+}
+
+### DELETE membership
+DELETE https://localhost/memberships?uid={{userId}}&gid={{groupId}} HTTP/1.1
+Authorization: Bearer {{token}}

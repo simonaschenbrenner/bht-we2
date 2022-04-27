@@ -1,0 +1,96 @@
+{
+    "ssl": {
+        "key": "./cert/key.pem",
+        "cert": "./cert/cert.pem"
+    },
+    "session": {
+        "tokenKey": "./cert/key.pem",
+        "tokenAlgorithm": "HS256",
+        "tokenExpiry": 18000,
+        "tokenRenewal" : 300
+    },
+    "db": {
+        "options": {
+            "useNewUrlParser": true,
+            "useUnifiedTopology": true
+        },
+        "url": "mongodb://localhost/mensaDB",
+        "validEmailRegEx": [
+            "^s\\d{5,6}@beuth-hochschule.de$",
+            "^s\\d{5,6}@bht-berlin.de$",
+            "admin"
+        ],
+        "initUserEmail": "admin",
+        "initUserPassword": "mensa",
+        "initUserName": "Administrator",
+        "initGroupName": "Mensa",
+        "initThreadName": "Ankündigungen"
+    },
+    "authorization": {
+        "grants": {
+            "user": {
+                "users": {
+                    "read:own": ["*", "!password"],
+                    "read:any": ["_id", "firstName", "lastName"],
+                    "update:own": ["email", "password", "firstName", "lastName"]
+                },
+                "groups": {
+                    "create:any": ["*"],
+                    "read:own": ["*"],
+                    "update:own": ["name", "adminId", "private"],
+                    "delete:own": ["*"]
+                },
+                "memberships": {
+                    "create:any": ["*"],
+                    "read:own": ["*"],
+                    "update:own": ["color"],
+                    "delete:own": ["*"]
+                },
+                "threads": {
+                    "create:own": ["*"],
+                    "read:own": ["*"],
+                    "update:own": ["name", "adminId"],
+                    "delete:own": ["*"]
+                },
+                "messages": {
+                    "create:own": ["*"],
+                    "read:any": ["*"],
+                    "update:own": ["content"],
+                    "delete:own": ["*"]
+                }
+            },
+            "admin": {
+                "users": {
+                    "create:any": ["*"],
+                    "read:any": ["*", "!password"],
+                    "update:any": ["*", "!_id"],
+                    "delete:any": ["*"]
+                },
+                "groups": {
+                    "create:any": ["*"],
+                    "read:any": ["*"],
+                    "update:any": ["*", "!_id"],
+                    "delete:any": ["*"]
+                },
+                "memberships": {
+                    "create:any": ["*"],
+                    "read:any": ["*"],
+                    "update:any": ["*", "!_id"],
+                    "delete:any": ["*"]
+                },
+                "threads": {
+                    "create:any": ["*"],
+                    "read:any": ["*"],
+                    "update:any": ["*", "!_id"],
+                    "delete:any": ["*"]
+                },
+                "messages": {
+                    "create:any": ["*"],
+                    "read:any": ["*"],
+                    "update:any": ["*", "!_id"],
+                    "delete:any": ["*"]
+                }
+            }
+        }
+    }
+}

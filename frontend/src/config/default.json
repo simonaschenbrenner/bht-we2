@@ -1,0 +1,22 @@
+{
+    "api": {
+        "url": "https://localhost/",
+        "endpoints": {
+            "authentication": "login",
+            "groups": {
+                "all": "groups/all",
+                "public": "groups/public"
+            },
+            "threads": {
+                "all": "threads/all"
+            },
+            "messages": {
+                "all": "messages/all",
+                "update": "messages/",
+                "delete": "messages/",
+                "add": "messages/add"
+            },
+            "users": "users"
+        }
+    }
+}

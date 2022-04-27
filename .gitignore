@@ -1,0 +1,5 @@
+.DS_Store
+.vscode
+**/cert/*
+**/db/*
+**/node_modules/*

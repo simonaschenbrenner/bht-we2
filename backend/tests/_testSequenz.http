@@ -1,0 +1,55 @@
+@token = PASTE_TOKEN_AFTER_AUTHENTICATING
+@groupId = PASTE_ID_OF_GROUP_TO_BE_MODIFIED
+@userId = PASTE_ID_OF_USER_TO_BE_MODIFIED
+
+### Login als Administrator
+POST https://localhost/login HTTP/1.1
+Authorization: Basic YWRtaW46bWVuc2E=
+
+### Anlegen eines Nutzers
+POST https://localhost/users/add HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "email": "s12345@beuth-hochschule.de",
+    "password": "passwort",
+    "firstName": "Simon",
+    "lastName": "Aschenbrenner"
+}
+
+### Auflisten der Nutzer
+GET https://localhost/users/all HTTP/1.1
+Authorization: Bearer {{token}}
+
+### Anlegen einer Gruppe
+POST https://localhost/groups/add HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name": "Web Engineering II (SoSe 21)",
+    "private": false
+}
+
+### Auflisten der Gruppen
+GET https://localhost/groups/all HTTP/1.1
+Authorization: Bearer {{token}}
+
+### Anlegen eines Threads in der angelegten Gruppe
+POST https://localhost/threads/add HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name": "Der erste Thread",
+    "groupId": "{{groupId}}"
+}
+
+### Auflisten der Threads der angelegten Gruppe
+GET https://localhost/threads/all?gid={{groupId}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### Auflisten der Threads, die ein Nutzer angelegt hat
+GET https://localhost/threads/all?uid={{userId}} HTTP/1.1
+Authorization: Bearer {{token}}

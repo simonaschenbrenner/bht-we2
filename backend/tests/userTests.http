@@ -1,0 +1,74 @@
+// Web Engineering II
+// Prof. Dr. Sebastian von Klinski
+// Sommersemester 2021
+// Semesterprojekt "MENSA - Community-Website für Studierende"
+// Simon Nunez Aschenbrenner (Matrikelnr. 908606)
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGRjN2E0ZmIxNzNhODBhMDcyOTcyNTciLCJpYXQiOjE2MjU3NTI5OTMsImV4cCI6MTYyNTc3MDk5M30.QnGUsECOQOO_9bMI12y7hE3vBQgvsjgi2YVGi7g3ROk
+@userId = 60dc7a4fb173a80a07297257
+
+### POST add new user
+POST https://localhost/users/add HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "email": "s12345@beuth-hochschule.de",
+    "password": "passwort",
+    "firstName": "Simon",
+    "lastName": "Aschenbrenner"
+}
+
+### GET all users
+GET https://localhost/users/all HTTP/1.1
+Authorization: Bearer {{token}}
+
+### GET one user by email
+GET https://localhost/users/find?email=s12345%40beuth-hochschule.de
+Authorization: Bearer {{token}}
+
+### GET one user by ID
+GET https://localhost/users/{{userId}}
+Authorization: Bearer {{token}}
+
+### PUT update user password
+PUT https://localhost/users/{{userId}}/edit/password
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "passwordOld": "passwort",
+    "passwordNew": "trowssap"
+}
+
+### PUT update user name
+PUT https://localhost/users/{{userId}}/edit/name
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "firstName": "Luke",
+    "lastName": "Skywalker"
+}
+
+### PUT update user email
+PUT https://localhost/users/{{userId}}/edit/email
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "email": "s12345@bht-berlin.de"
+}
+
+### PUT update user role
+PUT https://localhost/users/{{userId}}/edit/role
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "role": "admin"
+}
+
+### DELETE user
+DELETE https://localhost/users/{{userId}}
+Authorization: Bearer {{token}}

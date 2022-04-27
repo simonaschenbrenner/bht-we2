@@ -1,0 +1,66 @@
+// Web Engineering II
+// Prof. Dr. Sebastian von Klinski
+// Sommersemester 2021
+// Semesterprojekt "MENSA - Community-Website für Studierende"
+// Simon Nunez Aschenbrenner (Matrikelnr. 908606)
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGRjN2E0ZmIxNzNhODBhMDcyOTcyNTciLCJpYXQiOjE2MjUwNjIyMjQsImV4cCI6MTYyNTA4MDIyNH0.XD5oInDvHTg9tAX4yfDmNwwbhJTndGifkY_GtYh8KIo
+@groupId = 60dc7ccbb173a80a0729725c
+@userId = 60dc7a4fb173a80a07297257
+
+
+### POST add new group
+POST https://localhost/groups/add HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name": "Web Engineering II (SoSe 21)",
+    "private": false
+}
+
+### GET all groups
+GET https://localhost/groups/all HTTP/1.1
+Authorization: Bearer {{token}}
+
+### GET all groups a user is admin of
+GET https://localhost/groups/all?uid={{userId}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### GET groups by name
+GET https://localhost/groups/find?name=Web+Engineering+II+%28SoSe+21%29
+Authorization: Bearer {{token}}
+
+### GET one group by ID
+GET https://localhost/groups/{{groupId}}
+Authorization: Bearer {{token}}
+
+### PUT update group name
+PUT https://localhost/groups/{{groupId}}/edit/name
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name": "Web Engineering II (SoSe 22/23)"
+}
+
+### PUT update group admin
+PUT https://localhost/groups/{{groupId}}/edit/admin
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "adminId": "{{userId}}"
+}
+
+### PUT update group visibility to private
+PUT https://localhost/groups/{{groupId}}/edit/visibility?private=true
+Authorization: Bearer {{token}}
+
+### PUT update group visibility to public
+PUT https://localhost/groups/{{groupId}}/edit/visibility?private=false
+Authorization: Bearer {{token}}
+
+### DELETE group
+DELETE https://localhost/groups/{{groupId}}
+Authorization: Bearer {{token}}

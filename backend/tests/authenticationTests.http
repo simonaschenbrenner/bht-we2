@@ -1,0 +1,20 @@
+// Web Engineering II
+// Prof. Dr. Sebastian von Klinski
+// Sommersemester 2021
+// Semesterprojekt "MENSA - Community-Website für Studierende"
+// Simon Nunez Aschenbrenner (Matrikelnr. 908606)
+
+### POST login without credentials
+POST https://localhost/login HTTP/1.1
+
+### POST login with wrong credentials
+POST https://localhost/login HTTP/1.1
+Authorization: Basic YWRtaW46bWVuc20=
+
+### POST login as admin with credentials of the admin (admin:mensa)
+POST https://localhost/login HTTP/1.1
+Authorization: Basic YWRtaW46bWVuc2E=
+
+### POST login as user with credentials of a user (s12345@beuth-hochschule.de:passwort – has be created first)
+POST https://localhost/login HTTP/1.1
+Authorization: Basic czEyMzQ1QGJldXRoLWhvY2hzY2h1bGUuZGU6cGFzc3dvcnQ=
